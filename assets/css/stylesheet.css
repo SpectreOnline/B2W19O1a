@@ -1,0 +1,12 @@
+#gridcontainer{
+    display: grid;
+    grid-template-rows: 100px 100px 100px 100px 100px;
+    grid-template-columns: 100px 100px 100px 100px 100px;
+    margin: auto;
+}
+
+.griditem{
+    border: black 1px solid;
+    font-size: 66px;
+    text-align: center;
+}
