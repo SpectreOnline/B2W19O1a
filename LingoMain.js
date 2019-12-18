@@ -12,6 +12,7 @@ var attempts = 0;
 var loops = 0;
 var gridpos = 0;
 var gridcontainer = document.getElementById('gridcontainer');
+var winPoints = 0;
 var id = attempts + "-" + loops;
 
 Answer = Array.from(words[randomselector]);
@@ -24,9 +25,7 @@ function startlingo() {
     for (var a = 0; a < Answer.length; a++) {
         console.log(Answer[a]);
     }
-    //document.getElementById("0-1").innerHTML = Answer[0];
     console.log(gridcontainer);
-    //gridcontainer.children[0].innerHTML = Answer[0];
 }
 
 
@@ -39,21 +38,32 @@ function CheckAns(Input) {
         InputLetters[i] = Input.charAt(i);
     }
 
-    for (var loops = 0; loops < Input.length; loops++) {
-        //var id = attempts + "-" + o;
+    for (var loops = 1; loops <= Input.length; loops++) {
+        id = attempts + "-" + loops;
+        console.log(id);
         var writeletter = document.getElementById(id);
-        writeletter.innerHTML = InputLetters[loops];
-        if (Answer.includes(InputLetters[loops])) {
-            //var id = attempts + "-" + o;
+        writeletter.innerHTML = InputLetters[loops - 1];
+        if (Answer.includes(InputLetters[loops - 1])) {
             var checkedletter = document.getElementById(id)
             checkedletter.style.backgroundColor = "Yellow";
-        } else if (InputLetters[loops] == Answer[loops]) {
-            //var id = attempts + "-" + o;
+        }
+        if (InputLetters[loops - 1] === Answer[loops - 1]) {
             var checkedletter = document.getElementById(id)
             checkedletter.style.backgroundColor = "Green";
+            winPoints++;
+        }
+        if (winPoints == 5) {
+            alert("U heeft het woord geraden");
         }
     }
+    winPoints = 0;
     attempts++;
-}
+    if (attempts == 5) {
+        var InputField = document.getElementById('InputField');
+        InputField.style.display = 'none';
+        var StartButton = document.getElementById('StartButton');
+        StartButton.style.display = "none";
+        alert("U heeft verloren");
+    }
 
-//attempts + "-" + letter
+}
