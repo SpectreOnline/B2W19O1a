@@ -9,23 +9,25 @@ var InputLetters = [
 
 var randomselector = Math.floor(Math.random() * words.length);
 var attempts = 0;
-var loops = 0;
+var loops = 1;
 var gridpos = 0;
 var gridcontainer = document.getElementById('gridcontainer');
 var winPoints = 0;
 var id = attempts + "-" + loops;
+var firstletter = document.getElementById('0-1');
+
 
 Answer = Array.from(words[randomselector]);
 
 startlingo();
 
 function startlingo() {
-
-
     for (var a = 0; a < Answer.length; a++) {
         console.log(Answer[a]);
     }
-    console.log(gridcontainer);
+    firstletter.innerHTML = Answer[0];
+    firstletter.style.backgroundColor = 'Green';
+
 }
 
 
